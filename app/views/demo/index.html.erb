@@ -1,0 +1,10 @@
+<h1>Demo#index</h1>
+<p>Find me in app/views/demo/index.html.erb</p>
+
+<%= form_tag demo_index_path, method: :get do %>
+    <%= text_field_tag "lat", params[:lat] %>
+    <%= text_field_tag "lgn", params[:lgn] %>
+    <%= submit_tag %>
+<% end %>
+
+<%= content_tag :div, "", id: "demo", data: {weather: get_data_forecast} %>
