@@ -6,8 +6,11 @@ class DemoController < ApplicationController
 
   def result
     @forecast = calculate_weather(get_data_for_weather[0], get_data_for_weather[1])
-    #render json: @forecast[:daily][:data]
+  end
 
+  def api_weather
+    #TODO make it work :)
+    render json:  @forecast[:daily][:data]
   end
 
   private
