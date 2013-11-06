@@ -1,10 +1,17 @@
 <h1>Demo#index</h1>
 <p>Find me in app/views/demo/index.html.erb</p>
 
-<%= form_tag demo_index_path, method: :get do %>
-    <%= text_field_tag "lat", params[:lat] %>
-    <%= text_field_tag "lgn", params[:lgn] %>
+<% unless @lat_lgn %>
+    <script>
+      getGeolocation();
+    </script>
+<% end %>
+
+<%= form_tag demo_result_path, method: :get do %>
+    <%= text_field_tag "name", params[:name] %>
     <%= submit_tag %>
 <% end %>
 
-<%= content_tag :div, "", id: "demo", data: {weather: get_data_forecast} %>
+
+
+
