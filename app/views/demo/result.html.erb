@@ -1,4 +1,11 @@
-<p>Result</p>
-<% @forecast.each do |data| %>
-    <p><%=data %></p>
-<%end%>
+<p>Result for: <%= params[:name] %></p>
+
+<% @forecast[:daily][:data].each do |v| %>
+   <% date = Date.strptime("#{v["time"]}", "%s") %>
+   <p>Day <%= date.day %>, Month: <%= date.month %></p>
+    <p><strong>Summary: <%= v["summary"] %></strong></p>
+    <div>
+      <p>Temperature min: <%= v["temperatureMin"] %></p>
+      <p>Temperature max: <%= v["temperatureMax"] %></p>
+    </div>
+<% end %>

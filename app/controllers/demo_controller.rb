@@ -5,15 +5,23 @@ class DemoController < ApplicationController
   end
 
   def result
-    @forecast = ForecastIO.forecast(get_data_for_weather[0], get_data_for_weather[1],
-                                    params: { units: 'si',
-                                             exclude: 'minutely,hourly,flags,alerts'})
-    render json: @forecast[:daily][:data]
+    @forecast = calculate_weather(get_data_for_weather[0], get_data_for_weather[1])
+    #render json: @forecast[:daily][:data]
+
   end
+
+  private
 
   def get_data_for_weather
     @geocoder = Geocoder.search(params[:name])
     @geocoder[0].data["geometry"]["location"].values
+  end
+
+  def calculate_weather(lat, lgn)
+    ForecastIO.forecast(lat, lgn,
+                        params: { units: 'si',
+                                  exclude: 'minutely,hourly,flags,alerts'})
+
   end
 
 
